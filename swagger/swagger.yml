@@ -38,8 +38,7 @@ paths:
         200:
           description: returns a custom greeting
           schema:
-            type: string
-            description: contains the custom greeting as plain text
+            $ref: "#/definitions/GreatingResponse"
 definitions:
   Greeting:
     type: object
@@ -47,4 +46,11 @@ definitions:
       - name
     properties:
       name:
+        type: string
+  GreatingResponse:
+    type: object
+    required:
+      - message
+    properties:
+      message:
         type: string

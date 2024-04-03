@@ -9,6 +9,8 @@ import (
 	"net/http"
 
 	"github.com/go-openapi/runtime"
+
+	"sample/src/gen/models"
 )
 
 // PostGreetingOKCode is the HTTP code returned for type PostGreetingOK
@@ -21,10 +23,10 @@ swagger:response postGreetingOK
 */
 type PostGreetingOK struct {
 
-	/*contains the custom greeting as plain text
+	/*
 	  In: Body
 	*/
-	Payload string `json:"body,omitempty"`
+	Payload *models.GreatingResponse `json:"body,omitempty"`
 }
 
 // NewPostGreetingOK creates PostGreetingOK with default headers values
@@ -34,13 +36,13 @@ func NewPostGreetingOK() *PostGreetingOK {
 }
 
 // WithPayload adds the payload to the post greeting o k response
-func (o *PostGreetingOK) WithPayload(payload string) *PostGreetingOK {
+func (o *PostGreetingOK) WithPayload(payload *models.GreatingResponse) *PostGreetingOK {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the post greeting o k response
-func (o *PostGreetingOK) SetPayload(payload string) {
+func (o *PostGreetingOK) SetPayload(payload *models.GreatingResponse) {
 	o.Payload = payload
 }
 
@@ -48,8 +50,10 @@ func (o *PostGreetingOK) SetPayload(payload string) {
 func (o *PostGreetingOK) WriteResponse(rw http.ResponseWriter, producer runtime.Producer) {
 
 	rw.WriteHeader(200)
-	payload := o.Payload
-	if err := producer.Produce(rw, payload); err != nil {
-		panic(err) // let the recovery middleware deal with this
+	if o.Payload != nil {
+		payload := o.Payload
+		if err := producer.Produce(rw, payload); err != nil {
+			panic(err) // let the recovery middleware deal with this
+		}
 	}
 }

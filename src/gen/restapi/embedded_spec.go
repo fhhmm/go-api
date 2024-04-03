@@ -71,8 +71,7 @@ func init() {
           "200": {
             "description": "returns a custom greeting",
             "schema": {
-              "description": "contains the custom greeting as plain text",
-              "type": "string"
+              "$ref": "#/definitions/GreatingResponse"
             }
           }
         }
@@ -80,6 +79,17 @@ func init() {
     }
   },
   "definitions": {
+    "GreatingResponse": {
+      "type": "object",
+      "required": [
+        "message"
+      ],
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    },
     "Greeting": {
       "type": "object",
       "required": [
@@ -147,8 +157,7 @@ func init() {
           "200": {
             "description": "returns a custom greeting",
             "schema": {
-              "description": "contains the custom greeting as plain text",
-              "type": "string"
+              "$ref": "#/definitions/GreatingResponse"
             }
           }
         }
@@ -156,6 +165,17 @@ func init() {
     }
   },
   "definitions": {
+    "GreatingResponse": {
+      "type": "object",
+      "required": [
+        "message"
+      ],
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    },
     "Greeting": {
       "type": "object",
       "required": [
