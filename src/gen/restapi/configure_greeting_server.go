@@ -8,9 +8,9 @@ import (
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
-	"github.com/go-openapi/runtime/middleware"
 
 	"sample/src/gen/restapi/operations"
+	"sample/src/handler"
 )
 
 //go:generate swagger generate server --target ../../gen --name GreetingServer --spec ../../../swagger/swagger.yml --principal interface{}
@@ -37,11 +37,12 @@ func configureAPI(api *operations.GreetingServerAPI) http.Handler {
 
 	api.TxtProducer = runtime.TextProducer()
 
-	if api.GetGreetingHandler == nil {
-		api.GetGreetingHandler = operations.GetGreetingHandlerFunc(func(params operations.GetGreetingParams) middleware.Responder {
-			return middleware.NotImplemented("operation operations.GetGreeting has not yet been implemented")
-		})
-	}
+	// if api.GetGreetingHandler == nil {
+	// 	api.GetGreetingHandler = operations.GetGreetingHandlerFunc(func(params operations.GetGreetingParams) middleware.Responder {
+	// 		return middleware.NotImplemented("operation operations.GetGreeting has not yet been implemented")
+	// 	})
+	// }
+	api.GetGreetingHandler = operations.GetGreetingHandlerFunc(handler.GetHello)
 
 	api.PreServerShutdown = func() {}
 
