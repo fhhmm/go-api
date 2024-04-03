@@ -47,6 +47,48 @@ func init() {
             }
           }
         }
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "text/plain"
+        ],
+        "operationId": "postGreeting",
+        "parameters": [
+          {
+            "description": "Greeting object",
+            "name": "greeting",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Greeting"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "returns a custom greeting",
+            "schema": {
+              "description": "contains the custom greeting as plain text",
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Greeting": {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        }
       }
     }
   }
@@ -80,6 +122,48 @@ func init() {
               "type": "string"
             }
           }
+        }
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "text/plain"
+        ],
+        "operationId": "postGreeting",
+        "parameters": [
+          {
+            "description": "Greeting object",
+            "name": "greeting",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Greeting"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "returns a custom greeting",
+            "schema": {
+              "description": "contains the custom greeting as plain text",
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Greeting": {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
         }
       }
     }
