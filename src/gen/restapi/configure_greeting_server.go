@@ -43,6 +43,7 @@ func configureAPI(api *operations.GreetingServerAPI) http.Handler {
 	// 	})
 	// }
 	api.GetGreetingHandler = operations.GetGreetingHandlerFunc(handler.GetHello)
+	api.PostGreetingHandler = operations.PostGreetingHandlerFunc(handler.PostHello)
 
 	api.PreServerShutdown = func() {}
 
