@@ -21,4 +21,30 @@ paths:
           schema:
             type: string
             description: contains the actual greeting as plain text
-
+    post:
+      consumes:
+        - application/json
+      produces:
+        - text/plain
+      parameters:
+        - in: body
+          name: greeting
+          description: Greeting object
+          required: true
+          schema:
+            $ref: "#/definitions/Greeting"
+      operationId: postGreeting
+      responses:
+        200:
+          description: returns a custom greeting
+          schema:
+            type: string
+            description: contains the custom greeting as plain text
+definitions:
+  Greeting:
+    type: object
+    required:
+      - name
+    properties:
+      name:
+        type: string
